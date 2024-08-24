@@ -1,6 +1,3 @@
-from fixture.application import Application
-import pytest
-import json
 import os.path
 
 import pytest

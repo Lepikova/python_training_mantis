@@ -1,6 +1,5 @@
 from model.project import Project
 
-
 def test_add_project(app):
     # Создаем уникальное имя для проекта
     base_project_name = "TestProject"

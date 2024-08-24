@@ -3,8 +3,6 @@ from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
 from selenium.webdriver.common.by import By
 
-
-
 class Application:
 
     def __init__(self, browser, base_url):

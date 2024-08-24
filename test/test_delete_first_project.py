@@ -1,6 +1,5 @@
 from model.project import Project
 
-
 def test_delete_first_project(app):
     app.project.open_manage_projects_page()
     projects = app.project.get_project_list()
