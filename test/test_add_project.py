@@ -20,8 +20,7 @@ def test_add_project(app):
     new_projects = app.project.get_project_list()
 
     # Шаг 4: Проверяем, что новый проект был добавлен
-    assert len(new_projects) == len(old_projects) + 1, "Project was not added"
+    assert len(new_projects) == len(old_projects) + 1
 
     # Проверяем, что новый проект присутствует в списке
     added_project = next((p for p in new_projects if p["name"] == new_project.name), None)
-    assert added_project is not None, f"New project '{new_project.name}' not found in the project list"

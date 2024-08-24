@@ -16,6 +16,5 @@ def test_delete_first_project(app):
 
     # Проверяю, что проект был удалён
     updated_projects = app.project.get_project_list()
-    assert len(updated_projects) < len(projects), "Проект не был удалён"
-    assert all(project["name"] != projects[0]["name"] for project in updated_projects), \
-        f"Проект {projects[0]['name']} не был удален"
+    assert len(updated_projects) < len(projects)
+    assert all(project["name"] != projects[0]["name"] for project in updated_projects)
