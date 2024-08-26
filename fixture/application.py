@@ -9,7 +9,7 @@ from fixture.singup import SingupHelper
 
 class Application:
 
-    def __init__(self, browser, base_url):
+    def __init__(self, browser, base_url, config):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
@@ -24,6 +24,8 @@ class Application:
         self.singup = SingupHelper(self)
         self.mail = MailHelper(self)
         self.base_url = base_url
+        self.config = config
+
 
     def is_valid(self):
         try:

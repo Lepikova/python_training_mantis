@@ -23,7 +23,7 @@ def app(request):
     web_config = config['web']
     browser = request.config.getoption("--browser")
     base_url = web_config['baseUrl']
-    fixture = Application(browser=browser, base_url=base_url)
+    fixture = Application(browser=browser, base_url=base_url, config=config)
 
     # Добавляем финализатор для завершения сессии
     def fin():
