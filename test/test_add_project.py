@@ -1,9 +1,8 @@
 from model.project import Project
 from fixture.session import SessionHelper
 
-def test_add_project(app):
+def test_add_project(app, ensure_login):
     # Создаем уникальное имя для проекта
-    app.session.login("administrator", "root")  # Явный вызов логина
     base_project_name = "TestProject"
     unique_project_name = base_project_name
     while app.project.is_project_exists(unique_project_name):

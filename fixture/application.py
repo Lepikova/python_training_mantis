@@ -1,4 +1,5 @@
 from selenium import webdriver
+
 from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
 from selenium.webdriver.common.by import By
@@ -23,6 +24,7 @@ class Application:
         self.singup = SingupHelper(self)
         self.mail = MailHelper(self)
         self.base_url = base_url
+
     def is_valid(self):
         try:
             self.wd.current_url
