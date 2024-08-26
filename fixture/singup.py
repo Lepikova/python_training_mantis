@@ -8,7 +8,12 @@ class SingupHelper:
 
     def new_user(self, username, email, password):
         wd = self.app.wd
-        wd.get(self.app.base_url + "/singup_page.php")
+
+        base_url = self.app.base_url.rstrip('/')
+        absolute_url = f"{base_url}/signup_page.php"
+        wd.get(absolute_url)
+
+
         wd.find_element(By.NAME, "username").send_keys(username)
         wd.find_element(By.NAME, "email").send_keys(email)
         wd.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()

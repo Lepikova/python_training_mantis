@@ -17,22 +17,31 @@ def load_config(file):
 
 @pytest.fixture(scope="session")
 def app(request):
+    """Создает экземпляр приложения."""
     global fixture
     config = load_config(request.config.getoption("--target"))
     web_config = config['web']
-    webadmin_config = config['webadmin']
     browser = request.config.getoption("--browser")
-    fixture = Application(browser=browser, base_url=web_config['baseUrl'])
-    # Выполняем вход в систему
-    username = webadmin_config['username']
-    password = webadmin_config['password']
-    fixture.session.ensure_login(username, password)
-    # Добавляем финализатор для разлогинивания и завершения сессии
+    base_url = web_config['baseUrl']
+    fixture = Application(browser=browser, base_url=base_url)
+
+    # Добавляем финализатор для завершения сессии
     def fin():
-        fixture.session.ensure_logout()
         fixture.destroy()
+
     request.addfinalizer(fin)
     return fixture
+
+
+@pytest.fixture(scope="function")
+def ensure_login(app, request):
+    """Обеспечивает, что пользователь авторизован перед каждым тестом."""
+    config = load_config(request.config.getoption("--target"))
+    webadmin_config = config['webadmin']
+    username = webadmin_config['username']
+    password = webadmin_config['password']
+
+    app.session.ensure_login(username, password)
 
 @pytest.fixture(scope="session", autouse=True)
 def configure_server(request):
@@ -42,6 +51,8 @@ def configure_server(request):
     def fin():
         restore_server_configuration(config['ftp']['host'], config['ftp']['username'], config['ftp']['password'])
     request.addfinalizer(fin)
+
+
 
 def install_server_configuration(host, username, password):
     with ftputil.FTPHost(host, username, password) as remote:

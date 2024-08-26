@@ -6,6 +6,8 @@ def random_username(prefix, maxlen):
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 def test_singup_new_account(app):
+    app.open_home_page()
+
     username = random_username("user_", 10)
     email = username + "@localhost"
     password = "test"
