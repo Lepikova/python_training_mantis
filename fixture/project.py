@@ -7,8 +7,6 @@ class ProjectHelper:
         self.app = app
         self._manage_projects_page_open = False
 
-
-
     def open_manage_page(self):
         wd = self.app.wd
         self.app.open_home_page()

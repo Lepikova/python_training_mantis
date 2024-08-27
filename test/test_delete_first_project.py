@@ -1,6 +1,5 @@
 from model.project import Project
 
-
 def test_delete_first_project(app, ensure_login):
     # Получаю список проектов до удаления через SOAP API
     projects = app.soap.get_project_list()
