@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from fixture.james import JamesHelper
 from fixture.mail import MailHelper
 from fixture.singup import SingupHelper
+from fixture.soap import SoapHelper
 
 class Application:
 
@@ -25,6 +26,7 @@ class Application:
         self.mail = MailHelper(self)
         self.base_url = base_url
         self.config = config
+        self.soap = SoapHelper(self)
 
 
     def is_valid(self):
